@@ -19,7 +19,7 @@ package org.everit.osgi.authnr.permissionchecker;
 /**
  * Checking permissions.
  */
-public interface PermissionChecker {
+public interface AuthnrPermissionChecker {
 
     /**
      * Getting the resources that the current authenticated resource inherits the rights from. In practice these could
