@@ -29,7 +29,8 @@
 
   <groupId>org.everit.osgi</groupId>
   <artifactId>org.everit.osgi.authnr.permissionchecker.api</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.0-SNAPSHOT</version>
+
   <packaging>bundle</packaging>
 
   <name>Everit - Authenticated Authorization Permission Checker API</name>
