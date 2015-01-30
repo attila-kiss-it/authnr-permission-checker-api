@@ -21,6 +21,12 @@ package org.everit.osgi.authnr.permissionchecker;
  */
 public interface AuthnrPermissionChecker {
 
+    default void checkPermission(final long targetResourceId, final String... actions) {
+        if (!hasPermission(targetResourceId, actions)) {
+            throw new UnauthorizedException(getAuthorizationScope(), targetResourceId, actions);
+        }
+    }
+
     /**
      * Getting the resources that the current authenticated resource inherits the rights from. In practice these could
      * mean user groups or roles that a user is assigned to.
