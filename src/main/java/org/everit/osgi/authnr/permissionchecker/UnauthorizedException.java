@@ -22,8 +22,9 @@ public class UnauthorizedException extends RuntimeException {
 
     private static String createMessage(final long[] authorizationScope, final long targetResourceId,
             final String[] actions) {
-        return "Invocation not allowed, not authorized! [authorizationScope=" + Arrays.toString(authorizationScope)
-                + ", targetResourceId=" + targetResourceId + ", actions=" + Arrays.toString(actions) + "]";
+        return "Method invocation not allowed, not authorized! [authorizationScope="
+                + Arrays.toString(authorizationScope) + ", targetResourceId=" + targetResourceId + ", actions="
+                + Arrays.toString(actions) + "]";
     }
 
     private static final long serialVersionUID = 6052511160822385474L;
@@ -35,7 +36,13 @@ public class UnauthorizedException extends RuntimeException {
     private final String[] actions;
 
     public UnauthorizedException(final long[] authorizationScope, final long targetResourceId, final String[] actions) {
-        super(UnauthorizedException.createMessage(authorizationScope, targetResourceId, actions));
+        this(UnauthorizedException.createMessage(authorizationScope, targetResourceId, actions),
+                authorizationScope, targetResourceId, actions);
+    }
+
+    public UnauthorizedException(final String message, final long[] authorizationScope, final long targetResourceId,
+            final String[] actions) {
+        super(message);
         this.authorizationScope = authorizationScope;
         this.targetResourceId = targetResourceId;
         this.actions = actions;
