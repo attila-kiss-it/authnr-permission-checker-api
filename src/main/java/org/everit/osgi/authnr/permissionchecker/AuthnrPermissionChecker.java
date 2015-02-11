@@ -17,10 +17,26 @@
 package org.everit.osgi.authnr.permissionchecker;
 
 /**
- * Checking permissions.
+ * Checking permissions of an authenticated resource.
  */
 public interface AuthnrPermissionChecker {
 
+    /**
+     * Checks the permissions exactly the same way as the {@link #hasPermission(long, String...)} method, but it throws
+     * an {@link UnauthorizedException} in case of permission check fails.
+     *
+     * @param targetResourceId
+     *            The id of the resource that the authorized resource may have permission on.
+     * @param actions
+     *            One or more actions. If multiple actions are provided, the function returns true if the authorized
+     *            resource can do any of the actions on the target. At least one action must be defined.
+     * @throws UnauthorizedException
+     *             if there is no available permission or if target resource does not exist.
+     * @throws NullPointerException
+     *             if action parameter is a null array or one of the actions is null.
+     * @throws IllegalArgumentException
+     *             if a zero length array argument is passed for the action parameter.
+     */
     default void checkPermission(final long targetResourceId, final String... actions) {
         if (!hasPermission(targetResourceId, actions)) {
             throw new UnauthorizedException(getAuthorizationScope(), targetResourceId, actions);
@@ -31,7 +47,7 @@ public interface AuthnrPermissionChecker {
      * Getting the resources that the current authenticated resource inherits the rights from. In practice these could
      * mean user groups or roles that a user is assigned to.
      *
-     * @return The parent resource IDs transitively and the resourceId parameter.
+     * @return The parent resource IDs transitively and the authenticated resourceId.
      */
     long[] getAuthorizationScope();
 
@@ -45,11 +61,11 @@ public interface AuthnrPermissionChecker {
     /**
      * Check whether the authenticated resource has the permission with the given parameters.
      *
+     * @param targetResourceId
+     *            The id of the resource that the authorized resource may have permission on.
      * @param actions
      *            One or more actions. If multiple actions are provided, the function returns true if the authorized
      *            resource can do any of the actions on the target. At least one action must be defined.
-     * @param targetResourceId
-     *            The id of the resource that the authorized resource may have permission on.
      * @return <code>true</code> if there is available permission, <code>false</code> otherwise. The function returns
      *         false if the authorized resource or target resource does not exist.
      * @throws NullPointerException
