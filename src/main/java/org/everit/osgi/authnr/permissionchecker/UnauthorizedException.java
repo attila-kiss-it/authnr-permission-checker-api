@@ -35,13 +35,13 @@ public class UnauthorizedException extends RuntimeException {
 
     private final String[] actions;
 
-    public UnauthorizedException(final long[] authorizationScope, final long targetResourceId, final String[] actions) {
+    public UnauthorizedException(final long[] authorizationScope, final long targetResourceId, final String... actions) {
         this(UnauthorizedException.createMessage(authorizationScope, targetResourceId, actions),
                 authorizationScope, targetResourceId, actions);
     }
 
     public UnauthorizedException(final String message, final long[] authorizationScope, final long targetResourceId,
-            final String[] actions) {
+            final String... actions) {
         super(message);
         this.authorizationScope = authorizationScope;
         this.targetResourceId = targetResourceId;
