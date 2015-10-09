@@ -1,5 +1,8 @@
-/target
-/.settings
-/.classpath
-/.project
-/.checkstyle
+target/
+.project
+.settings
+.classpath
+.fbExcludeFilterFile
+.pmd
+.pmdruleset.xml
+.checkstyle

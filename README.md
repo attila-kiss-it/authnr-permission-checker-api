@@ -11,7 +11,7 @@ An extension API of the ```PermissionChecker``` interface defined by the
  value.
 
 For more information and details check the javadoc of the 
-___org.everit.osgi.authnr.permissionchecker.AuthnrPermissionChecker___ 
+___org.everit.authnr.permissionchecker.AuthnrPermissionChecker___ 
 interface.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-15041869-4/everit-org/authorization-api)](https://github.com/igrigorik/ga-beacon)
